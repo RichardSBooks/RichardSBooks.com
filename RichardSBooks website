@@ -1,0 +1,1768 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Richard S. Books — Word Searches, Notebooks & More</title>
+<meta name="description" content="Fun activity books, word searches, notebooks, and humor books by Richard S. Books. Available on Amazon.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --ink: #1a1a18;
+    --ink-soft: #4a4a45;
+    --ink-muted: #8a8a82;
+    --paper: #fafaf7;
+    --paper-warm: #f3f1ea;
+    --paper-card: #ffffff;
+    --accent: #b85c2a;
+    --accent-light: #f5ede6;
+    --accent-hover: #9e4e24;
+    --border: rgba(26,26,24,0.10);
+    --border-strong: rgba(26,26,24,0.20);
+    --font-display: 'Playfair Display', Georgia, serif;
+    --font-body: 'DM Sans', system-ui, sans-serif;
+    --shadow-sm: 0 1px 4px rgba(0,0,0,0.06);
+    --shadow-card: 0 4px 24px rgba(0,0,0,0.07), 0 1px 4px rgba(0,0,0,0.04);
+    --shadow-modal: 0 20px 60px rgba(0,0,0,0.15);
+    --radius: 12px;
+    --radius-sm: 6px;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--font-body);
+    background: var(--paper);
+    color: var(--ink);
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* NAV */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(250,250,247,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 2rem;
+  }
+  .nav-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 60px;
+  }
+  .nav-logo {
+    font-family: var(--font-display);
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--ink);
+    text-decoration: none;
+    letter-spacing: -0.01em;
+  }
+  .nav-logo span { color: var(--accent); }
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+  }
+  .nav-links a {
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--ink-soft);
+    text-decoration: none;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--accent); }
+
+  /* HERO */
+  .hero {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 5rem 2rem 4rem;
+    display: block;
+  }
+  .hero-eyebrow {
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1rem;
+  }
+ .hero h1 {
+   font-family: var(--font-display);
+   font-size: clamp(2.8rem, 5vw, 4.5rem);
+   font-weight: 600;
+   line-height: 1.15;
+   letter-spacing: -0.02em;
+   color: var(--ink);
+   margin-bottom: 1.2rem;
+   max-width: 1100px; 
+  }
+  .hero h1 em {
+    font-style: italic;
+    color: var(--accent);
+  }
+  .hero-desc {
+   font-size: 1rem;
+   color: var(--ink-soft);
+   line-height: 1.75;
+   max-width: 1100px; 
+   margin-bottom: 2rem;
+  }
+  .hero-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--accent);
+    color: white;
+    text-decoration: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: var(--radius-sm);
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: background 0.2s, transform 0.15s;
+  }
+  .hero-cta:hover { background: var(--accent-hover); transform: translateY(-1px); }
+  .hero-visual {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+  .hero-book-thumb {
+    background: var(--paper-warm);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    aspect-ratio: 2/3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    transition: transform 0.2s;
+  }
+  .hero-book-thumb:hover { transform: translateY(-3px); }
+  .hero-book-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: var(--radius);
+  }
+  .hero-book-thumb.tall { grid-row: span 2; }
+  .hero-book-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 1rem;
+    text-align: center;
+  }
+  .hero-book-placeholder .icon { font-size: 2rem; }
+  .hero-book-placeholder .label {
+    font-size: 0.7rem;
+    color: var(--ink-muted);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  /* STATS BAR */
+  .stats-bar {
+    background: var(--paper-warm);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 1.2rem 2rem;
+  }
+  .stats-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    gap: 4rem;
+  }
+  .stat { text-align: center; }
+  .stat-num {
+    font-family: var(--font-display);
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: var(--ink);
+  }
+  .stat-label {
+    font-size: 0.75rem;
+    color: var(--ink-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-weight: 500;
+  }
+
+  /* CATEGORIES / SECTIONS */
+  .section {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 4rem 2rem;
+	scroll-margin-top: 70px;
+  }
+  .section-header {
+    display: flex;
+    align-items: baseline;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .section-title {
+    font-family: var(--font-display);
+    font-size: 1.6rem;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+  }
+  .section-count {
+    font-size: 0.8rem;
+    color: var(--ink-muted);
+    font-weight: 500;
+  }
+
+  /* BOOK GRID */
+  .books-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 1.5rem;
+  }
+
+  /* BOOK CARD */
+  .book-card {
+    cursor: pointer;
+    background: var(--paper-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+    transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+    box-shadow: var(--shadow-sm);
+  }
+  .book-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-card);
+    border-color: var(--border-strong);
+  }
+  .book-cover {
+    width: 100%;
+    aspect-ratio: 2/3;
+    background: var(--paper-warm);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    position: relative;
+  }
+  .book-cover img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .book-cover-placeholder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    padding: 1.5rem;
+    text-align: center;
+    width: 100%;
+    height: 100%;
+  }
+  .book-cover-placeholder .emoji { font-size: 2.5rem; }
+  .book-cover-placeholder .title {
+    font-family: var(--font-display);
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--ink);
+    line-height: 1.3;
+  }
+  .book-cover-placeholder .subtitle {
+    font-size: 0.65rem;
+    color: var(--ink-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+  .book-info {
+    padding: 0.85rem 0.9rem;
+  }
+  .book-title {
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--ink);
+    line-height: 1.35;
+    margin-bottom: 0.25rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .book-price {
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--accent);
+  }
+  .book-pages {
+    font-size: 0.72rem;
+    color: var(--ink-muted);
+    margin-top: 0.15rem;
+  }
+
+  /* MODAL OVERLAY */
+  .modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(10,10,8,0.55);
+    z-index: 200;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+    backdrop-filter: blur(4px);
+  }
+  .modal-overlay.open { display: flex; }
+
+  .modal {
+    background: var(--paper-card);
+    border-radius: 18px;
+    box-shadow: var(--shadow-modal);
+    width: 100%;
+    max-width: 780px;
+    max-height: 90vh;
+    overflow-y: auto;
+    display: grid;
+    grid-template-columns: 240px 1fr;
+    animation: modalIn 0.25s cubic-bezier(0.34,1.56,0.64,1);
+  }
+  @keyframes modalIn {
+    from { opacity: 0; transform: scale(0.94) translateY(10px); }
+    to { opacity: 1; transform: scale(1) translateY(0); }
+  }
+
+  .modal-cover-col {
+    background: var(--paper-warm);
+    border-radius: 18px 0 0 18px;
+    padding: 2rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    border-right: 1px solid var(--border);
+  }
+  .modal-cover {
+    width: 100%;
+    aspect-ratio: 2/3;
+    border-radius: 8px;
+    background: white;
+    overflow: hidden;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+  }
+  .modal-cover img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .modal-cover-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    padding: 1.5rem;
+    text-align: center;
+    background: linear-gradient(145deg, #f8f6ee, #ede9dc);
+  }
+  .modal-cover-placeholder .emoji { font-size: 3rem; }
+  .modal-cover-placeholder .title {
+    font-family: var(--font-display);
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--ink);
+  }
+  .modal-price-badge {
+    background: var(--accent);
+    color: white;
+    font-size: 1.1rem;
+    font-weight: 500;
+    padding: 0.5rem 1.2rem;
+    border-radius: 50px;
+    letter-spacing: -0.01em;
+  }
+  .modal-amazon-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    width: 100%;
+    background: #FF9900;
+    color: #111;
+    text-decoration: none;
+    padding: 0.65rem 1rem;
+    border-radius: var(--radius-sm);
+    font-size: 0.85rem;
+    font-weight: 500;
+    transition: background 0.2s, transform 0.15s;
+  }
+  .modal-amazon-btn:hover { background: #e68a00; transform: translateY(-1px); }
+  .modal-amazon-btn svg { flex-shrink: 0; }
+
+  .modal-content-col {
+    padding: 2rem 2rem 2rem 1.75rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+  .modal-close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: 1px solid var(--border);
+    background: var(--paper-card);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    color: var(--ink-soft);
+    transition: background 0.15s;
+    z-index: 10;
+  }
+  .modal-close:hover { background: var(--paper-warm); }
+  .modal-wrap { position: relative; }
+
+  .modal-category-tag {
+    display: inline-block;
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    background: var(--accent-light);
+    padding: 0.25rem 0.65rem;
+    border-radius: 50px;
+  }
+  .modal-title {
+    font-family: var(--font-display);
+    font-size: 1.4rem;
+    font-weight: 600;
+    line-height: 1.25;
+    letter-spacing: -0.015em;
+    color: var(--ink);
+  }
+  .modal-desc {
+    font-size: 0.9rem;
+    color: var(--ink-soft);
+    line-height: 1.75;
+  }
+
+  .modal-meta {
+    display: flex;
+    gap: 1.5rem;
+    padding: 0.85rem 1rem;
+    background: var(--paper-warm);
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--border);
+  }
+  .meta-item { display: flex; flex-direction: column; gap: 0.1rem; }
+  .meta-label { font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--ink-muted); font-weight: 500; }
+  .meta-value { font-size: 0.88rem; font-weight: 500; color: var(--ink); }
+
+  .modal-previews-title {
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+    margin-bottom: 0.5rem;
+  }
+  .modal-previews {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+  }
+  .preview-img {
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--border);
+    overflow: hidden;
+    aspect-ratio: 3/4;
+    background: var(--paper-warm);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .preview-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .preview-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 0.4rem;
+    padding: 1rem;
+    text-align: center;
+  }
+  .preview-placeholder span {
+    font-size: 0.65rem;
+    color: var(--ink-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  /* ABOUT SECTION */
+  .about-section {
+    background: var(--paper-warm);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 4rem 2rem;
+  }
+  .about-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+  }
+  .about-eyebrow {
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.75rem;
+  }
+  .about-title {
+    font-family: var(--font-display);
+    font-size: 1.8rem;
+    font-weight: 600;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    margin-bottom: 1rem;
+  }
+  .about-text {
+    font-size: 0.92rem;
+    color: var(--ink-soft);
+    line-height: 1.8;
+    margin-bottom: 0.75rem;
+  }
+  .about-features {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-top: 0.5rem;
+  }
+  .feature-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.6rem;
+  }
+  .feature-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+    flex-shrink: 0;
+    margin-top: 7px;
+  }
+  .feature-text {
+    font-size: 0.82rem;
+    color: var(--ink-soft);
+    line-height: 1.45;
+  }
+  .about-quote {
+    background: var(--paper-card);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--accent);
+    border-radius: 0 var(--radius) var(--radius) 0;
+    padding: 1.5rem;
+  }
+  .quote-text {
+    font-family: var(--font-display);
+    font-size: 1.05rem;
+    font-style: italic;
+    color: var(--ink);
+    line-height: 1.6;
+    margin-bottom: 0.75rem;
+  }
+  .quote-author {
+    font-size: 0.8rem;
+    color: var(--ink-muted);
+    font-weight: 500;
+  }
+
+  /* FOOTER */
+  footer {
+    background: var(--ink);
+    color: rgba(255,255,255,0.6);
+    padding: 2.5rem 2rem;
+  }
+  .footer-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  .footer-logo {
+    font-family: var(--font-display);
+    font-size: 1rem;
+    color: rgba(255,255,255,0.85);
+    font-weight: 600;
+  }
+  .footer-logo span { color: #e8945a; }
+  .footer-text { font-size: 0.8rem; }
+  .footer-link {
+    color: #e8945a;
+    text-decoration: none;
+  }
+  .footer-link:hover { text-decoration: underline; }
+
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    .hero { grid-template-columns: 1fr; gap: 2.5rem; padding: 3rem 1.25rem 2.5rem; }
+    .hero-visual { display: none; }
+    .stats-inner { gap: 2rem; }
+    .modal { grid-template-columns: 1fr; max-width: 420px; }
+    .modal-cover-col { border-radius: 18px 18px 0 0; border-right: none; border-bottom: 1px solid var(--border); flex-direction: row; align-items: flex-start; gap: 1.25rem; }
+    .modal-cover { width: 120px; flex-shrink: 0; }
+    .modal-price-badge { font-size: 0.9rem; }
+    .about-inner { grid-template-columns: 1fr; gap: 2rem; }
+    .nav-links { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a href="#" class="nav-logo">Richard<span>S.</span>Books</a>
+    <ul class="nav-links">
+      <li><a href="#word-searches">Word Searches</a></li>
+	  <li><a href="#sudoku-books">Sudoku Books</a></li>
+      <li><a href="#humor-books">Humor Books</a></li>
+	  <li><a href="#journals-and-planners">Journals & Planners</a></li>
+	  <li><a href="#notebooks">Notebooks</a></li>
+	  <li><a href="#for-kids">For Kids</a></li>
+      <li><a href="#about">About</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-text">
+    <p class="hero-eyebrow">Available on Amazon</p>
+    <h1>Books made to <em>enjoy,</em> one page at a time.</h1>
+    <p class="hero-desc">Word searches, notebooks, humor books and more — all crafted with care, ready to order and delivered straight to your door.</p>
+    <a href="#books" class="hero-cta">Browse All Books ↓</a>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats-bar">
+  <div class="stats-inner">
+    <div class="stat">
+      <div class="stat-num">100+</div>
+      <div class="stat-label">Books Published</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">6</div>
+      <div class="stat-label">Categories</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">$6.99–$16.99</div>
+      <div class="stat-label">Price Range</div>
+    </div>
+  </div>
+</div>
+
+<!-- BOOKS SECTION (anchor) -->
+<div id="books"></div>
+
+<!-- WORD SEARCHES -->
+<section class="section" id="word-searches">
+  <div class="section-header">
+    <h2 class="section-title">Word Searches</h2>
+    <span class="section-count">10 books</span>
+  </div>
+  <div class="books-grid">
+
+    <div class="book-card" onclick="openModal('ws1')">
+      <div class="book-cover">
+		<img src="images/Word_Search_Music.png" alt="Music Word Search Puzzle Book: Your Ultimate Escape into the Golden Age of Music">
+      </div>
+      <div class="book-info">
+        <div class="book-title">60s, 70s, 80s, and 90s Music Word Search</div>
+        <div class="book-price">$7.99</div>
+        <div class="book-pages">140 pages · Paperback</div>
+      </div>
+    </div>
+
+    <div class="book-card" onclick="openModal('ws2')">
+      <div class="book-cover">
+		<img src="images/Spring_Word_Search.png" alt="Spring Word Search Puzzle Book: Easy-to-Read Puzzles about Spring | Perfect for Vacations, Holidays and Free Times">
+      </div>
+      <div class="book-info">
+        <div class="book-title">Spring Word Search</div>
+        <div class="book-price">$6.99</div>
+        <div class="book-pages">111 pages · Paperback</div>
+      </div>
+    </div>
+
+    <div class="book-card" onclick="openModal('ws3')">
+      <div class="book-cover">
+		<img src="images/Cat_Word_Search_Front.png" alt="Cat Lover's Word Search Puzzle Book: Easy-to-Read Puzzles About Cats">
+      </div>
+      <div class="book-info">
+        <div class="book-title">Cat Lover's Word Search</div>
+        <div class="book-price">$6.99</div>
+        <div class="book-pages">110 pages · Paperback</div>
+      </div>
+    </div>
+
+    <div class="book-card" onclick="openModal('ws4')">
+      <div class="book-cover">
+		<img src="images/Horses_Word_Search_Front.png" alt="Horses Word Search Puzzle Book: Easy-to-Read Puzzles about Horses">
+      </div>
+      <div class="book-info">
+        <div class="book-title">Horses Word Search</div>
+        <div class="book-price">$6.99</div>
+        <div class="book-pages">110 pages · Paperback</div>
+      </div>
+    </div>
+
+    <div class="book-card" onclick="openModal('ws5')">
+      <div class="book-cover">
+		<img src="images/Botanical_Word_Search_Front.png" alt="Botanical Word Search Puzzle Book: Easy-to-Read Puzzles about Plants and Nature">
+      </div>
+      <div class="book-info">
+        <div class="book-title">Botanical Word Search</div>
+        <div class="book-price">$6.99</div>
+        <div class="book-pages">110 pages · Paperback</div>
+      </div>
+    </div>
+
+    <div class="book-card" onclick="openModal('ws6')">
+      <div class="book-cover">
+		<img src="images/Black_Word_Search_Front.png" alt="Black Culture Word Search Puzzle Book: Easy-to-Read Puzzles Celebrating Black Heritage and History">
+      </div>
+      <div class="book-info">
+        <div class="book-title">Black Culture Word Search</div>
+        <div class="book-price">$6.99</div>
+        <div class="book-pages">111 pages · Paperback</div>
+      </div>
+    </div>
+
+    <div class="book-card" onclick="openModal('ws7')">
+      <div class="book-cover">
+		<img src="images/Alaska_Word_Search_Front.png" alt="Alaska Word Search Puzzle Book: Easy-to-Read Puzzles about Alaska">
+      </div>
+      <div class="book-info">
+        <div class="book-title">Alaska Word Search</div>
+        <div class="book-price">$6.99</div>
+        <div class="book-pages">110 pages · Paperback</div>
+      </div>
+    </div>
+
+    <div class="book-card" onclick="openModal('ws8')">
+      <div class="book-cover">
+		<img src="images/USA_Word_Search_Front.png" alt="USA Word Search Puzzle Book: Easy-to-Read Puzzles about the United States">
+      </div>
+      <div class="book-info">
+        <div class="book-title">USA Word Search</div>
+        <div class="book-price">$8.99</div>
+        <div class="book-pages">200 pages · Paperback</div>
+      </div>
+    </div>
+	
+    <div class="book-card" onclick="openModal('ws9')">
+      <div class="book-cover">
+		<img src="images/Summer_Word_Search_Front.png" alt="Summer Word Search Puzzle Book: Easy-to-Read Summer-Themed Puzzles">
+      </div>
+      <div class="book-info">
+        <div class="book-title">Summer Word Search</div>
+        <div class="book-price">$6.99</div>
+        <div class="book-pages">110 pages · Paperback</div>
+      </div>
+    </div>
+	
+    <div class="book-card" onclick="openModal('ws10')">
+      <div class="book-cover">
+		<img src="images/Nostalgic_Word_Search_Front.png" alt="Nostalgic Word Search Puzzle Book: Easy-to-Read Puzzles about Nostalgia">
+      </div>
+      <div class="book-info">
+        <div class="book-title">Nostalgic Word Search (50s, 60s, 70s, 80s and 90s)</div>
+        <div class="book-price">$6.99</div>
+        <div class="book-pages">140 pages · Paperback</div>
+      </div>
+    </div>
+	
+  </div>
+</section>
+
+<!-- SUDOKU BOOKS -->
+<section class="section" id="sudoku-books" style="padding-top: 2rem;">
+  <div class="section-header">
+    <h2 class="section-title">Sudoku Books</h2>
+    <span class="section-count">2 books</span>
+  </div>
+  <div class="books-grid">
+
+    <div class="book-card" onclick="openModal('sb1')">
+      <div class="book-cover">
+		<img src="images/Sudoku_2026_Easy_To_Hard_Front.png" alt="2026 Sudoku: Easy, Medium and Hard Sudoku Puzzles with Solutions">
+      </div>
+      <div class="book-info">
+        <div class="book-title">Easy, Medium and Hard Sudoku Puzzles</div>
+        <div class="book-price">$9.99</div>
+        <div class="book-pages">180 pages · Paperback</div>
+      </div>
+    </div>
+
+    <div class="book-card" onclick="openModal('sb2')">
+      <div class="book-cover">
+		<img src="images/Sudoku_2027_Easy_To_Hard_Front.png" alt="2027 Sudoku: Easy, Medium and Hard Sudoku Puzzles with Solutions">
+      </div>
+      <div class="book-info">
+        <div class="book-title">Easy, Medium and Hard Sudoku Puzzles</div>
+        <div class="book-price">$9.99</div>
+        <div class="book-pages">180 pages · Paperback</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- HUMOR BOOKS -->
+<section class="section" id="humor-books" style="padding-top: 2rem;">
+  <div class="section-header">
+    <h2 class="section-title">Humor Books</h2>
+    <span class="section-count">5 books</span>
+  </div>
+  <div class="books-grid">
+
+	<div class="book-card" onclick="openModal('jb1')">
+	  <div class="book-cover">
+		<img src="images/FrontPage_StatHumor.png" alt="Stat Humor: A Prescription for Laughter">
+	  </div>
+	  <div class="book-info">
+	    <div class="book-title">Humor for Healthcare Professionals</div>
+        <div class="book-price">$9.99</div>
+        <div class="book-pages">63 pages · Paperback</div>
+	  </div>
+	</div>
+
+    <div class="book-card" onclick="openModal('jb2')">
+      <div class="book-cover">
+		 <img src="images/FrontPage_PerMyLastEmail.png" alt="Per My Last Email: Humor for Corporate and Office Workers">
+	  </div>
+      <div class="book-info">
+        <div class="book-title">Humor for Corporate and Office Workers</div>
+        <div class="book-price">$9.99</div>
+        <div class="book-pages">26 pages · Paperback</div>
+      </div>
+    </div>
+
+    <div class="book-card" onclick="openModal('jb3')">
+      <div class="book-cover">
+		 <img src="images/TeacherHumor_FrontPage.png" alt="I'll Wait Until It's Quiet: Humor for Teachers">
+      </div>
+      <div class="book-info">
+        <div class="book-title">Humor for Teachers</div>
+        <div class="book-price">$9.99</div>
+        <div class="book-pages">33 pages · Paperback</div>
+      </div>
+    </div>
+	
+    <div class="book-card" onclick="openModal('jb4')">
+      <div class="book-cover">
+		<img src="images/IT_Humor_FrontPage.png" alt="404: Motivation Not Found: Humor for IT Workers">
+      </div>
+      <div class="book-info">
+        <div class="book-title">Humor for IT Workers</div>
+        <div class="book-price">$9.99</div>
+        <div class="book-pages">35 pages · Paperback</div>
+      </div>
+    </div>
+
+    <div class="book-card" onclick="openModal('jb5')">
+      <div class="book-cover">
+		<img src="images/WorkoutHumor_FrontPage.png" alt="The Daily Burn: Humor for Fitness, Workout and Gym Lovers">
+      </div>
+      <div class="book-info">
+        <div class="book-title">Humor for Fitness and Gym Lovers</div>
+        <div class="book-price">$9.99</div>
+        <div class="book-pages">27 pages · Paperback</div>
+      </div>
+    </div>
+	
+  </div>
+</section>
+
+<!-- JOURNALS & PLANNERS -->
+<section class="section" id="journals-and-planners" style="padding-top: 2rem;">
+  <div class="section-header">
+    <h2 class="section-title">Journals & Planners</h2>
+    <span class="section-count">6 books</span>
+  </div>
+  <div class="books-grid">
+
+    <div class="book-card" onclick="openModal('jp1')">
+      <div class="book-cover">
+		<img src="images/Wine_Cork_Bordeaux_Front.png" alt="Wine Journal: Tasting Notes">
+      </div>
+      <div class="book-info">
+        <div class="book-title">Wine Journal: Tasting Notes</div>
+        <div class="book-price">$9.99</div>
+        <div class="book-pages">100 pages · Paperback</div>
+      </div>
+    </div>
+
+    <div class="book-card" onclick="openModal('jp2')">
+      <div class="book-cover">
+		<img src="images/Wine_Cork_Beige_Front.png" alt="Wine Journal: Tasting Notes">
+      </div>
+      <div class="book-info">
+        <div class="book-title">Wine Journal: Tasting Notes</div>
+        <div class="book-price">$9.99</div>
+        <div class="book-pages">100 pages · Paperback</div>
+      </div>
+    </div>
+
+    <div class="book-card" onclick="openModal('jp3')">
+      <div class="book-cover">
+		<img src="images/Wine_Glass_Bordeaux_Front.png" alt="Wine Journal: Tasting Notes">
+      </div>
+      <div class="book-info">
+        <div class="book-title">Wine Journal: Tasting Notes</div>
+        <div class="book-price">$9.99</div>
+        <div class="book-pages">100 pages · Paperback</div>
+      </div>
+    </div>
+
+    <div class="book-card" onclick="openModal('jp4')">
+      <div class="book-cover">
+		<img src="images/Wine_Glass_Beige_Front.png" alt="Wine Journal: Tasting Notes">
+      </div>
+      <div class="book-info">
+        <div class="book-title">Wine Journal: Tasting Notes</div>
+        <div class="book-price">$9.99</div>
+        <div class="book-pages">100 pages · Paperback</div>
+      </div>
+    </div>
+
+    <div class="book-card" onclick="openModal('jp5')">
+      <div class="book-cover">
+		<img src="images/Gratitude_Journal_Front.png" alt="Gratitude Journal">
+      </div>
+      <div class="book-info">
+        <div class="book-title">Gratitude Journal</div>
+        <div class="book-price">$9.99</div>
+        <div class="book-pages">200 pages · Paperback</div>
+      </div>
+    </div>
+
+    <div class="book-card" onclick="openModal('jp6')">
+      <div class="book-cover">
+		<img src="images/Gratitude_Journal_Orange_Front.png" alt="Gratitude Journal">
+      </div>
+      <div class="book-info">
+        <div class="book-title">Gratitude Journal: Embracing Each Day With Joy & Gratitude</div>
+        <div class="book-price">$9.99</div>
+        <div class="book-pages">200 pages · Paperback</div>
+      </div>
+    </div>
+	
+  </div>
+</section>
+
+<!-- NOTEBOOKS -->
+<section class="section" id="notebooks" style="padding-top: 2rem;">
+  <div class="section-header">
+    <h2 class="section-title">Notebooks</h2>
+    <span class="section-count">4 books</span>
+  </div>
+  <div class="books-grid">
+
+    <div class="book-card" onclick="openModal('nb1')">
+      <div class="book-cover">
+		<img src="images/I'll_do_it_tomorrow.png" alt="I'll Do It Tomorrow: Funny Notebook">
+      </div>
+      <div class="book-info">
+        <div class="book-title">I'll Do It Tomorrow: Funny Notebook</div>
+        <div class="book-price">$6.99</div>
+        <div class="book-pages">100 pages · Paperback</div>
+      </div>
+    </div>
+
+    <div class="book-card" onclick="openModal('nb2')">
+      <div class="book-cover">
+		<img src="images/The_Book_I_Write_In_To_Look_Busy.png" alt="The Book I Write In to Look Busy: Funny Notebook">
+      </div>
+      <div class="book-info">
+        <div class="book-title">The Book I Write In to Look Busy: Funny Notebook</div>
+        <div class="book-price">$6.99</div>
+        <div class="book-pages">100 pages · Paperback</div>
+      </div>
+    </div>
+
+    <div class="book-card" onclick="openModal('nb3')">
+      <div class="book-cover">
+		<img src="images/Motivation_Still_Loading.png" alt="Motivation? Still Loading...: Funny Notebook">
+      </div>
+      <div class="book-info">
+        <div class="book-title">Motivation? Still Loading...: Funny Notebook</div>
+        <div class="book-price">$6.99</div>
+        <div class="book-pages">100 pages · Paperback</div>
+      </div>
+    </div>
+
+    <div class="book-card" onclick="openModal('nb4')">
+      <div class="book-cover">
+		<img src="images/Notes_From_The_Worlds_Coolest_Human.png" alt="Notes From the World's Coolest Human: Funny Notebook">
+      </div>
+      <div class="book-info">
+        <div class="book-title">Notes From the World's Coolest Human: Funny Notebook</div>
+        <div class="book-price">$6.99</div>
+        <div class="book-pages">100 pages · Paperback</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- FOR KIDS -->
+<section class="section" id="for-kids" style="padding-top: 2rem;">
+  <div class="section-header">
+    <h2 class="section-title">For Kids</h2>
+    <span class="section-count">9 books</span>
+  </div>
+  <div class="books-grid">
+
+    <div class="book-card" onclick="openModal('fk1')">
+      <div class="book-cover">
+		<img src="images/Trains_And_Trucks_Coloring.png" alt="Trains and Trucks Coloring Book for Kids">
+      </div>
+      <div class="book-info">
+        <div class="book-title">Trains and Trucks Coloring Book for Kids</div>
+        <div class="book-price">$7.99</div>
+        <div class="book-pages">58 pages · Paperback</div>
+      </div>
+    </div>
+
+    <div class="book-card" onclick="openModal('fk2')">
+      <div class="book-cover">
+		<img src="images/Dino_Coloring.png" alt="Dinosaur Coloring Book for Kids">
+      </div>
+      <div class="book-info">
+        <div class="book-title">Dinosaur Coloring Book for Kids</div>
+        <div class="book-price">$7.99</div>
+        <div class="book-pages">53 pages · Paperback</div>
+      </div>
+    </div>
+
+    <div class="book-card" onclick="openModal('fk3')">
+      <div class="book-cover">
+		<img src="images/Summer_Coloring.png" alt="Summer Coloring Book for Kids">
+      </div>
+      <div class="book-info">
+        <div class="book-title">Summer Coloring Book for Kids</div>
+        <div class="book-price">$7.99</div>
+        <div class="book-pages">47 pages · Paperback</div>
+      </div>
+    </div>
+
+    <div class="book-card" onclick="openModal('fk4')">
+      <div class="book-cover">
+		<img src="images/Cars_Coloring_Front.png" alt="Car Coloring Book for Kids">
+      </div>
+      <div class="book-info">
+        <div class="book-title">Car Coloring Book for Kids</div>
+        <div class="book-price">$7.99</div>
+        <div class="book-pages">43 pages · Paperback</div>
+      </div>
+    </div>
+
+    <div class="book-card" onclick="openModal('fk5')">
+      <div class="book-cover">
+		<img src="images/Dogs_Coloring_Front.png" alt="Dog-Themed Coloring Book for Kids">
+      </div>
+      <div class="book-info">
+        <div class="book-title">Dog-Themed Coloring Book for Kids</div>
+        <div class="book-price">$7.99</div>
+        <div class="book-pages">57 pages · Paperback</div>
+      </div>
+    </div>
+
+    <div class="book-card" onclick="openModal('fk6')">
+      <div class="book-cover">
+		<img src="images/Cats_Coloring_Front.png" alt="Cat Coloring Book for Kids">
+      </div>
+      <div class="book-info">
+        <div class="book-title">Cat Coloring Book for Kids</div>
+        <div class="book-price">$7.99</div>
+        <div class="book-pages">63 pages · Paperback</div>
+      </div>
+    </div>
+	
+    <div class="book-card" onclick="openModal('fk7')">
+      <div class="book-cover">
+		<img src="images/Halloween_Coloring_Front.png" alt="Halloween Coloring Book for Kids">
+      </div>
+      <div class="book-info">
+        <div class="book-title">Halloween Coloring Book for Kids</div>
+        <div class="book-price">$7.99</div>
+        <div class="book-pages">71 pages · Paperback</div>
+      </div>
+    </div>
+
+    <div class="book-card" onclick="openModal('fk8')">
+      <div class="book-cover">
+		<img src="images/Dinosaur_Word_Search_Front.png" alt="Dinosaur Word Search for Kids">
+      </div>
+      <div class="book-info">
+        <div class="book-title">Dinosaur Word Search</div>
+        <div class="book-price">$6.99</div>
+        <div class="book-pages">65 pages · Paperback</div>
+      </div>
+    </div>
+
+    <div class="book-card" onclick="openModal('fk9')">
+      <div class="book-cover">
+		<img src="images/Space_Word_Search_Front.png" alt="Space Word Search for Kids">
+      </div>
+      <div class="book-info">
+        <div class="book-title">Space Word Search</div>
+        <div class="book-price">$6.99</div>
+        <div class="book-pages">60 pages · Paperback</div>
+      </div>
+    </div>
+	
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about-section" id="about">
+  <div class="about-inner">
+    <div>
+      <p class="about-eyebrow">About the Author</p>
+      <h2 class="about-title">Hi, I'm Richard.</h2>
+      <p class="about-text">I design notebooks, activity books, and lighthearted titles that are meant to be used—not just collected. Whether it’s for writing, relaxing, or having a quick laugh, each book is created with a focus on clarity, usability, and clean design.</p>
+      <p class="about-text">My goal is simple: to offer practical, well-designed books that fit easily into everyday life without overcomplicating things.</p>
+	  <p class="about-text">All titles are independently published through Amazon KDP, allowing for print-on-demand production and reliable delivery across the US and internationally.</p>
+      <div class="about-features">
+        <div class="feature-item">
+          <div class="feature-dot"></div>
+          <span class="feature-text">Printed & shipped by Amazon</span>
+        </div>
+        <div class="feature-item">
+          <div class="feature-dot"></div>
+          <span class="feature-text">Quality paperback format</span>
+        </div>
+        <div class="feature-item">
+          <div class="feature-dot"></div>
+          <span class="feature-text">Affordable pricing</span>
+        </div>
+        <div class="feature-item">
+          <div class="feature-dot"></div>
+          <span class="feature-text">Simple, practical designs for everyday use</span>
+        </div>
+      </div>
+    </div>
+    <div class="about-quote">
+      <p class="quote-text">"I believe that the best books are the ones you actually pick up — whether it's to scribble a thought, solve a puzzle, or share a laugh."</p>
+      <p class="quote-author">— Richard S. Books</p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-logo">Richard<span>S.</span>Books</div>
+    <div class="footer-text">All books available on <a href="https://amzn.to/4sQ5JsE" class="footer-link" target="_blank">Amazon.com</a></div>
+    <div class="footer-text">© 2026 Richard S. Books</div>
+  </div>
+</footer>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modalOverlay" onclick="closeModalOutside(event)">
+  <div class="modal modal-wrap" id="modal">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+
+    <!-- LEFT: cover + price + CTA -->
+    <div class="modal-cover-col">
+      <div class="modal-cover" id="modalCover"></div>
+      <div class="modal-price-badge" id="modalPrice">$7.99</div>
+      <a href="#" id="modalAmazonBtn" target="_blank" class="modal-amazon-btn">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M13.958 10.09c0 1.232.029 2.256-.591 3.351-.502.891-1.301 1.438-2.186 1.438-1.214 0-1.922-.924-1.922-2.292 0-2.692 2.415-3.182 4.699-3.182v.685zm3.186 7.705a.661.661 0 01-.77.074c-1.08-.895-1.274-1.312-1.868-2.165-1.783 1.817-3.047 2.362-5.368 2.362-2.742 0-4.872-1.691-4.872-5.076 0-2.644 1.433-4.444 3.466-5.325 1.765-.778 4.229-.916 6.113-1.13v-.422c0-.778.06-1.695-.397-2.368-.396-.6-1.158-.848-1.833-.848-1.244 0-2.355.636-2.628 1.955-.056.295-.274.585-.577.6l-3.225-.348c-.272-.062-.575-.282-.497-.7C5.862 1.966 9.24.5 12.243.5c1.537 0 3.546.41 4.758 1.572 1.537 1.435 1.39 3.35 1.39 5.432v4.923c0 1.482.614 2.132 1.191 2.933.203.283.247.622-.01.833l-2.428 2.602zm3.814 3.327C18.791 23.57 15.436 25 12.406 25 8.277 25 4.552 23.382 1.77 20.72c-.23-.208-.025-.493.252-.332 2.994 1.742 6.694 2.789 10.52 2.789 2.578 0 5.415-.535 8.024-1.645.394-.167.724.258.392.58z"/></svg>
+        Buy on Amazon
+      </a>
+    </div>
+
+    <!-- RIGHT: info -->
+    <div class="modal-content-col">
+      <div>
+        <span class="modal-category-tag" id="modalCategory">Word Search</span>
+      </div>
+      <h2 class="modal-title" id="modalTitle">Book Title</h2>
+      <p class="modal-desc" id="modalDesc">Description goes here.</p>
+
+      <div class="modal-meta" id="modalMeta"></div>
+
+      <div>
+        <p class="modal-previews-title">Inside the Book</p>
+        <div class="modal-previews" id="modalPreviews"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+const books = {
+  ws1: {
+    title: "Music Word Search Puzzle Book: Your Ultimate Escape into the Golden Age of Music",
+    category: "Word Search",
+    price: "$7.99",
+    desc: "Step back in time and celebrate the golden decades of music with this fun and nostalgic Word Search Puzzle Book. Featuring 70 puzzles and 630 hidden words, this collection takes you on a journey through the iconic sounds of the 60s, 70s, 80s, and 90s—from legendary bands and artists to unforgettable songs and albums.",
+    pages: "140 pages",
+    size: "6 × 9 in",
+    language: "English",
+    amazonUrl: "https://amzn.to/4epvtbK",
+    coverImg: "images/Word_Search_Music_Front.png",
+	backImg: "images/Word_Search_Music_Back.png",
+    sampleImg: "images/Sample_Word_Search_Music.png"
+  },
+  ws2: {
+    title: "Spring Word Search Puzzle Book: Easy-to-Read Puzzles about Spring | Perfect for Vacations, Holidays and Free Times",
+    category: "Word Search",
+    price: "$6.99",
+    desc: "Celebrate the beauty of the season with this Spring-Themed Word Search Book. Packed with 55 delightful puzzles across 111 pages, this collection is perfect for kids, adults, and seniors who want to relax, recharge, and enjoy the spirit of springtime while keeping their minds sharp.",
+    pages: "111 pages",
+    size: "6 × 9 in",
+    language: "English",
+    amazonUrl: "https://amzn.to/3QlmHS8",
+    coverImg: "images/Spring_Word_Search.png",
+	backImg: "images/Spring_Word_Search_Back.png",
+    sampleImg: "images/Spring_Word_Search_Sample.png"
+  },
+  ws3: {
+    title: "Cat Lover's Word Search Puzzle Book: Easy-to-Read Puzzles About Cats",
+    category: "Word Search",
+    price: "$6.99",
+    desc: "Celebrate your love for cats with this delightful Cat-Themed Word Search Book! Packed with 55 fun puzzles (9 words per puzzle) and 55 dedicated solution pages (a total of 110 pages), this collection is designed to entertain cat enthusiasts of all ages while keeping the brain sharp and engaged.",
+    pages: "110 pages",
+    size: "6 × 9 in",
+    language: "English",
+    amazonUrl: "https://amzn.to/42jKioQ",
+    coverImg: "images/Cat_Word_Search_Front.png",
+	backImg: "images/Cat_Word_Search_Back.png",
+    sampleImg: "images/Cat_Word_Search_Sample.png"
+  },
+  ws4: {
+    title: "Horses Word Search Puzzle Book: Easy-to-Read Puzzles about Horses",
+    category: "Word Search",
+    price: "$6.99",
+    desc: "Celebrate the beauty, strength, and spirit of horses with this Horse-Themed Word Search Book. Packed with 55 engaging puzzles across 110 pages, this collection is perfect for horse lovers, riders, and puzzle enthusiasts of all ages.",
+    pages: "110 pages",
+    size: "6 × 9 in",
+    language: "English",
+    amazonUrl: "https://amzn.to/4u5ykv9",
+    coverImg: "images/Horses_Word_Search_Front.png",
+	backImg: "images/Horses_Word_Search_Back.png",
+    sampleImg: "images/Horses_Word_Search_Sample.png"
+  },
+  ws5: {
+    title: "Botanical Word Search Puzzle Book: Easy-to-Read Puzzles about Plants and Nature",
+    category: "Word Search",
+    price: "$6.99",
+    desc: "Immerse yourself in the lush world of plants, flowers, and gardens with this Botanical-Themed Word Search Book. Featuring 55 captivating puzzles, this collection is perfect for nature lovers, gardeners, and puzzle enthusiasts who enjoy a relaxing mental challenge.",
+    pages: "110 pages",
+    size: "6 × 9 in",
+    language: "English",
+    amazonUrl: "https://amzn.to/4cN1Q1P",
+    coverImg: "images/Botanical_Word_Search_Front.png",
+	backImg: "images/Botanical_Word_Search_Back.png",
+    sampleImg: "images/Botanical_Word_Search_Sample.png"
+  },
+  ws6: {
+    title: "Black Culture Word Search Puzzle Book: Easy-to-Read Puzzles Celebrating Black Heritage and History",
+    category: "Word Search",
+    price: "$6.99",
+    desc: "Dive into the rich history, powerful achievements, and vibrant creativity of Black culture with this Black Culture-Themed Word Search Book. Featuring 55 engaging puzzles and more than 100 pages of brain-boosting fun, this collection is both entertaining and educational, making it perfect for all ages.",
+    pages: "111 pages",
+    size: "6 × 9 in",
+    language: "English",
+    amazonUrl: "https://amzn.to/4vNM5QH",
+    coverImg: "images/Black_Word_Search_Front.png",
+	backImg: "images/Black1.png",
+    sampleImg: "images/Black2.png"
+  },
+  ws7: {
+    title: "Alaska Word Search Puzzle Book: Easy-to-Read Puzzles about Alaska",
+    category: "Word Search",
+    price: "$6.99",
+    desc: "Journey through the wild beauty of Alaska with this Alaska-Themed Word Search Book. Featuring 55 exciting puzzles and more than 100 pages of fun, this collection is perfect for travelers, nature lovers, and puzzle enthusiasts who want to experience the wonder of the great north from the comfort of home.",
+    pages: "110 pages",
+    size: "6 × 9 in",
+    language: "English",
+    amazonUrl: "https://amzn.to/4mPmdQs",
+    coverImg: "images/Alaska_Word_Search_Front.png",
+	backImg: "images/Alaska1.png",
+    sampleImg: "images/Alaska2.png"
+  },
+  ws8: {
+    title: "USA Word Search Puzzle Book: Easy-to-Read Puzzles about the United States",
+    category: "Word Search",
+    price: "$8.99",
+    desc: "Take a journey across the United States with this USA-Themed Word Search Book, packed with 100 exciting puzzles and 100 solution pages for a total of 200 pages of fun. This collection is the perfect way to explore the nation’s rich history, culture, and iconic symbols while keeping your mind sharp and entertained.",
+    pages: "200 pages",
+    size: "6 × 9 in",
+    language: "English",
+    amazonUrl: "https://amzn.to/4cJAyJz",
+    coverImg: "images/USA_Word_Search_Front.png",
+	backImg: "images/USA1.png",
+    sampleImg: "images/USA2.png"
+  },
+  ws9: {
+    title: "Summer Word Search Puzzle Book: Easy-to-Read Summer-Themed Puzzles",
+    category: "Word Search",
+    price: "$6.99",
+    desc: "Celebrate the joy of the season with this Summer-Themed Word Search Book! Packed with 55 sunny puzzles and 55 dedicated solution pages (a total of 110 pages), this collection is perfect for keeping your brain active while enjoying everything summer has to offer.",
+    pages: "110 pages",
+    size: "6 × 9 in",
+    language: "English",
+    amazonUrl: "https://amzn.to/3QlDDYT",
+    coverImg: "images/Summer_Word_Search_Front.png",
+	backImg: "images/Summer_Word_Search1.png",
+    sampleImg: "images/Summer_Word_Search2.png"
+  },
+  ws10: {
+    title: "Nostalgic Word Search Puzzle Book: Easy-to-Read Puzzles about Nostalgia (50s, 60s, 70s, 80s and 90s)",
+    category: "Word Search",
+    price: "$6.99",
+    desc: "Relive the memories of the 50s, 60s, 70s, 80s, and 90s with this exciting Nostalgia-Themed Word Search Book. Packed with 70 fun puzzles and over 100 pages of brain-teasing entertainment, this collection is the perfect blend of retro charm and relaxing challenge.",
+    pages: "140 pages",
+    size: "6 × 9 in",
+    language: "English",
+    amazonUrl: "https://amzn.to/42qVXCn",
+    coverImg: "images/Nostalgic_Word_Search_Front.png",
+	backImg: "images/Nostalgic1.png",
+    sampleImg: "images/Nostalgic2.png"
+  },
+  sb1: {
+    title: "2026 Sudoku: Easy, Medium and Hard Sudoku Puzzles with Solutions",
+    category: "Sudoku",
+    price: "$9.99",
+    desc: "Exercise your brain and enjoy hours of entertainment with this 2026 Sudoku Puzzle Book. Featuring 120 puzzles across three difficulty levels, this collection is perfect for both beginners and experienced players who love a good challenge. With plenty of space to work and full solutions included, this book is your ideal companion for relaxation, travel, or daily brain training.",
+    pages: "180 pages",
+    size: "6 × 9 in",
+    language: "English",
+    amazonUrl: "https://amzn.to/3Q8BtvD",
+    coverImg: "images/Sudoku_2026_Easy_To_Hard_Front.png",
+	backImg: "images/Sudoku_2026_Easy_To_Hard_Back.png",
+    sampleImg: "images/Sudoku_2026_Easy_To_Hard_Sample.png"
+  },
+  sb2: {
+    title: "2027 Sudoku: Easy, Medium and Hard Sudoku Puzzles with Solutions",
+    category: "Sudoku",
+    price: "$9.99",
+    desc: "Exercise your brain and enjoy hours of entertainment with this 2027 Sudoku Puzzle Book. Featuring 120 puzzles across three difficulty levels, this collection is perfect for both beginners and experienced players who love a good challenge. With plenty of space to work and full solutions included, this book is your ideal companion for relaxation, travel, or daily brain training.",
+    pages: "180 pages",
+    size: "6 × 9 in",
+    language: "English",
+    amazonUrl: "https://amzn.to/3OzmTMZ",
+    coverImg: "images/Sudoku_2027_Easy_To_Hard_Front.png",
+	backImg: "images/Sudoku_2027_Easy_To_Hard_Back.png",
+    sampleImg: "images/Sudoku_2027_Easy_To_Hard_Sample.png"
+  },
+  jb1: {
+    title: "Stat Humor: A Prescription for Laughter",
+    category: "Humor Book",
+    price: "$9.99",
+    desc: "Healthcare is demanding, unpredictable, and—on some days—completely absurd. Stat Humor: A Prescription for Laughter is your PRN dose of sanity, packed with 200+ healthcare-themed jokes written for the people who keep showing up, shift after shift.",
+    pages: "63 pages",
+    size: "6 × 9 in",
+    language: "English",
+    amazonUrl: "https://amzn.to/4tjr66R",
+    coverImg: "images/FrontPage_StatHumor.png",
+    backImg: "images/BackPage_StatHumor.png",
+    sampleImg: "images/Sample_StatHumor.png"
+  },
+  jb2: {
+    title: "Per My Last Email: Humor for Corporate and Office Workers",
+    category: "Humor Book",
+    price: "$9.99",
+    desc: "If your workday includes meetings about meetings, emails that start with “per my last email” and coffee that’s been reheated more times than you can count, this book is for you. Per My Last Email is packed with 100+ work-related jokes capturing the everyday absurdity of corporate life.",
+    pages: "26 pages",
+    size: "6 × 9 in",
+    language: "English",
+    amazonUrl: "https://amzn.to/4cOLM0u",
+    coverImg: "images/FrontPage_PerMyLastEmail.png",
+	backImg: "images/BackPage_PerMyLastEmail.png",
+    sampleImg: "images/Sample_PerMyLastEmail.png"
+  },
+  jb3: {
+    title: "I'll Wait Until It's Quiet: Humor for Teachers",
+    category: "Humor Book",
+    price: "$9.99",
+    desc: "Teaching is the only profession where you can manage 30 personalities, troubleshoot technology, enforce rules you didn’t create, and still be expected to smile before first period. I’ll Wait Until It’s Quiet is packed with 100+ school-related jokes celebrating the daily chaos of classrooms, staff meetings, and copy machines that sense fear.",
+    pages: "33 pages",
+    size: "6 × 9 in",
+    language: "English",
+    amazonUrl: "https://amzn.to/41IAx3v",
+    coverImg: "images/TeacherHumor_FrontPage.png",
+    backImg: "images/TeacherHumor_BackPage.png",
+    sampleImg: "images/Sample_TeacherHumor.png"
+  },
+   jb4: {
+    title: "404: Motivation Not Found: Humor for IT Workers",
+    category: "Humor Book",
+    price: "$9.99",
+    desc: "If your day involves debugging something that worked yesterday, explaining the same issue for the fifth time, or staring at code until it almost makes sense, this book is for you. 404: Motivation Not Found delivers 100+ tech-related jokes for developers, IT professionals, engineers, sysadmins, and anyone who has ever tried turning it off and on again with diminishing hope.",
+    pages: "35 pages",
+    size: "6 × 9 in",
+    language: "English",
+    amazonUrl: "https://amzn.to/4edOzlh",
+    coverImg: "images/IT_Humor_FrontPage.png",
+    backImg: "images/IT_Humor_BackPage.png",
+    sampleImg: "images/Sample_IT_Humor.png"
+  },
+   jb5: {
+    title: "The Daily Burn: Humor for Fitness, Workout and Gym Lovers",
+    category: "Humor Book",
+    price: "$9.99",
+    desc: "If your fitness journey includes skipped leg days, questionable form, and a deep emotional relationship with your water bottle, The Daily Burn is for you. Packed with 100+ workout, gym, and fitness-themed jokes, this book is a celebration of sore muscles, half-hearted warmups, and the universal struggle between motivation and the couch.",
+    pages: "27 pages",
+    size: "6 × 9 in",
+    language: "English",
+    amazonUrl: "https://amzn.to/41KMg1s",
+    coverImg: "images/WorkoutHumor_FrontPage.png",
+    backImg: "images/WorkoutHumor_BackPage.png",
+    sampleImg: "images/Sample_WorkoutHumor.png"
+  },
+   jp1: {
+    title: "Wine Journal: Tasting Notes",
+    category: "Journal",
+    price: "$9.99",
+    desc: "Celebrate your passion for wine and capture every detail of your tasting journey with this elegant Wine Journal. Designed for wine lovers, collectors, and enthusiasts, this logbook gives you space to record the essential details of every bottle you experience, making it easy to remember favorites, refine your palate, and build your personal wine archive.",
+    pages: "100 pages",
+    size: "6 × 9 in",
+    language: "English",
+    amazonUrl: "https://amzn.to/4ckbiL1",
+    coverImg: "images/Wine_Cork_Bordeaux_Front.png",
+    backImg: "images/Wine_Cork_Bordeaux_Interior.png",
+    sampleImg: "images/Wine_Cork_Bordeaux_Interior2.png"
+  },
+   jp2: {
+    title: "Wine Journal: Tasting Notes",
+    category: "Journal",
+    price: "$9.99",
+    desc: "Celebrate your passion for wine and capture every detail of your tasting journey with this elegant Wine Journal. Designed for wine lovers, collectors, and enthusiasts, this logbook gives you space to record the essential details of every bottle you experience, making it easy to remember favorites, refine your palate, and build your personal wine archive.",
+    pages: "100 pages",
+    size: "6 × 9 in",
+    language: "English",
+    amazonUrl: "https://amzn.to/3Ozx8B8",
+    coverImg: "images/Wine_Cork_Beige_Front.png",
+    backImg: "images/Wine_Cork_Bordeaux_Interior.png",
+    sampleImg: "images/Wine_Cork_Bordeaux_Interior2.png"
+  },
+   jp3: {
+    title: "Wine Journal: Tasting Notes",
+    category: "Journal",
+    price: "$9.99",
+    desc: "Celebrate your passion for wine and capture every detail of your tasting journey with this elegant Wine Journal. Designed for wine lovers, collectors, and enthusiasts, this logbook gives you space to record the essential details of every bottle you experience, making it easy to remember favorites, refine your palate, and build your personal wine archive.",
+    pages: "100 pages",
+    size: "6 × 9 in",
+    language: "English",
+    amazonUrl: "https://amzn.to/3QnwpUc",
+    coverImg: "images/Wine_Glass_Bordeaux_Front.png",
+    backImg: "images/Wine_Cork_Bordeaux_Interior.png",
+    sampleImg: "images/Wine_Cork_Bordeaux_Interior2.png"
+  },
+   jp4: {
+    title: "Wine Journal: Tasting Notes",
+    category: "Journal",
+    price: "$9.99",
+    desc: "Celebrate your passion for wine and capture every detail of your tasting journey with this elegant Wine Journal. Designed for wine lovers, collectors, and enthusiasts, this logbook gives you space to record the essential details of every bottle you experience, making it easy to remember favorites, refine your palate, and build your personal wine archive.",
+    pages: "100 pages",
+    size: "6 × 9 in",
+    language: "English",
+    amazonUrl: "https://amzn.to/492bkVy",
+    coverImg: "images/Wine_Glass_Beige_Front.png",
+    backImg: "images/Wine_Cork_Bordeaux_Interior.png",
+    sampleImg: "images/Wine_Cork_Bordeaux_Interior2.png"
+  },
+   jp5: {
+    title: "Gratitude Journal: Embracing Each Day With Joy & Gratitude",
+    category: "Journal",
+    price: "$9.99",
+    desc: "Transform your days with this thoughtfully designed Gratitude Journal. With 200 pages of guided prompts, this journal provides the perfect space to reflect, appreciate, and focus on the positive aspects of life. Perfect for anyone looking to develop a mindful habit and embrace a more joyful mindset.",
+    pages: "200 pages",
+    size: "6 × 9 in",
+    language: "English",
+    amazonUrl: "https://amzn.to/4tpQnMt",
+    coverImg: "images/Gratitude_Journal_Front.png",
+    backImg: "images/Gratitude_Journal_Interior.png",
+    sampleImg: "images/Gratitude_Journal_Interior2.png"
+  },
+   jp6: {
+    title: "Gratitude Journal: Embracing Each Day With Joy & Gratitude",
+    category: "Journal",
+    price: "$9.99",
+    desc: "Transform your days with this thoughtfully designed Gratitude Journal. With 200 pages of guided prompts, this journal provides the perfect space to reflect, appreciate, and focus on the positive aspects of life. Perfect for anyone looking to develop a mindful habit and embrace a more joyful mindset.",
+    pages: "200 pages",
+    size: "6 × 9 in",
+    language: "English",
+    amazonUrl: "https://amzn.to/42qTmsc",
+    coverImg: "images/Gratitude_Journal_Orange_Front.png",
+    backImg: "images/Gratitude_Journal_Interior.png",
+    sampleImg: "images/Gratitude_Journal_Interior2.png"
+  },
+   nb1: {
+    title: "I'll Do It Tomorrow",
+    category: "Funny Notebook",
+    price: "$6.99",
+    desc: "Stay true to your procrastination style with this hilarious notebook titled “I’ll Do It (Today) Tomorrow” — with “Today” cheekily scratched out. Perfect for anyone who thrives under last-minute pressure (or just prefers naps over deadlines). Whether you’re taking notes, making to-do lists, or doodling while you don’t do the thing, this notebook will keep you laughing along the way.",
+    pages: "100 pages",
+    size: "6 × 9 in",
+    language: "English",
+    amazonUrl: "https://amzn.to/4vNkEGA",
+    coverImg: "images/I'll_do_it_tomorrow.png",
+    backImg: "images/Notebook_Interior.png",
+    sampleImg: "images/Notebook_Interior.png"
+  },
+   nb2: {
+    title: "The Book I Write In to Look Busy",
+    category: "Funny Notebook",
+    price: "$6.99",
+    desc: "Look productive while doing absolutely nothing important with The Book I Write In to Look Busy. Perfect for doodles, random thoughts, fake note-taking in meetings, or actually writing something useful (no judgment here).",
+    pages: "100 pages",
+    size: "6 × 9 in",
+    language: "English",
+    amazonUrl: "https://amzn.to/4sOBTVu",
+    coverImg: "images/The_Book_I_Write_In_To_Look_Busy.png",
+    backImg: "images/Notebook_Interior.png",
+    sampleImg: "images/Notebook_Interior.png"
+  },
+   nb3: {
+    title: "Motivation? Still Loading...",
+    category: "Funny Notebook",
+    price: "$6.99",
+    desc: "Stay productive (or at least look like you are) with this notebook. Designed with a touch of humor, it’s the perfect spot for jotting down notes, ideas, lists, or doodles — especially on the days when motivation feels just out of reach.",
+    pages: "100 pages",
+    size: "6 × 9 in",
+    language: "English",
+    amazonUrl: "https://amzn.to/4vN5PUG",
+    coverImg: "images/Motivation_Still_Loading.png",
+    backImg: "images/Notebook_Interior.png",
+    sampleImg: "images/Notebook_Interior.png"
+  },
+   nb4: {
+    title: "Notes From the World's Coolest Human",
+    category: "Funny Notebook",
+    price: "$6.99",
+    desc: "Show off your sense of humor (and confidence) with Notes From the World’s Coolest Human. This 6x9 inch notebook is the perfect place to jot down your thoughts, plans, lists, or genius ideas — all while reminding everyone who’s boss.",
+    pages: "100 pages",
+    size: "6 × 9 in",
+    language: "English",
+    amazonUrl: "https://amzn.to/4cIUOec",
+    coverImg: "images/Notes_From_The_Worlds_Coolest_Human.png",
+    backImg: "images/Notebook_Interior.png",
+    sampleImg: "images/Notebook_Interior.png"
+  },
+   fk1: {
+    title: "Trains and Trucks Coloring Book for Kids",
+    category: "Coloring Book",
+    price: "$7.99",
+    desc: "All aboard for hours of creative fun with this exciting Trucks & Trains Coloring Book for Kids! Featuring over 20 large trains and trucks–themed illustrations, this book is perfect for young vehicle fans who love big engines and busy roads.",
+    pages: "58 pages",
+    size: "6 × 9 in",
+    language: "English",
+    amazonUrl: "https://amzn.to/3OHKPOr",
+    coverImg: "images/Trains_And_Trucks_Coloring.png",
+    backImg: "images/Train1.png",
+    sampleImg: "images/Truck1.png"
+  },
+   fk2: {
+    title: "Dinosaur Coloring Book for Kids",
+    category: "Coloring Book",
+    price: "$7.99",
+    desc: "Roar into a world of creativity with this exciting Dinosaur Coloring Book for Kids! Featuring over 20 large dinosaur-themed illustrations, this book is perfect for young dinosaur fans who love coloring big, bold, and friendly prehistoric creatures.",
+    pages: "53 pages",
+    size: "6 × 9 in",
+    language: "English",
+    amazonUrl: "https://amzn.to/4cGH0AO",
+    coverImg: "images/Dino_Coloring.png",
+    backImg: "images/Dino1.png",
+    sampleImg: "images/Dino2.png"
+  },
+   fk3: {
+    title: "Summer Coloring Book for Kids",
+    category: "Coloring Book",
+    price: "$7.99",
+    desc: "Make this summer extra colorful and creative with the Summer Coloring Book for Kids! Packed with fun, cheerful, and easy-to-color pages, this book is the perfect way to keep children entertained during summer break, vacations, road trips, or relaxing afternoons at home.",
+    pages: "47 pages",
+    size: "6 × 9 in",
+    language: "English",
+    amazonUrl: "https://amzn.to/4mWjR2b",
+    coverImg: "images/Summer_Coloring.png",
+    backImg: "images/Summer1.png",
+    sampleImg: "images/Summer2.png"
+  },
+   fk4: {
+    title: "Car Coloring Book for Kids",
+    category: "Coloring Book",
+    price: "$7.99",
+    desc: "Start your engines for hours of creative fun with this exciting Car Coloring Book for Kids! Featuring 20 large car-themed illustrations, this book is perfect for young vehicle lovers who enjoy coloring fast, fun, and friendly cars.",
+    pages: "43 pages",
+    size: "6 × 9 in",
+    language: "English",
+    amazonUrl: "https://amzn.to/4vHGZFz",
+    coverImg: "images/Cars_Coloring_Front.png",
+    backImg: "images/Cars1.png",
+    sampleImg: "images/Cars2.png"
+  },
+   fk5: {
+    title: "Dog-Themed Coloring Book for Kids",
+    category: "Coloring Book",
+    price: "$7.99",
+    desc: "Get ready for paws-itively fun coloring time with this adorable Dog Coloring Book for Kids! Featuring over 20 large dog-themed illustrations, this book is perfect for young dog lovers who enjoy coloring cute, friendly pups.",
+    pages: "57 pages",
+    size: "6 × 9 in",
+    language: "English",
+    amazonUrl: "https://amzn.to/4csXNZs",
+    coverImg: "images/Dogs_Coloring_Front.png",
+    backImg: "images/Dogs1.png",
+    sampleImg: "images/Dogs2.png"
+  },
+   fk6: {
+    title: "Cat Coloring Book for Kids",
+    category: "Coloring Book",
+    price: "$7.99",
+    desc: "Get ready for hours of creative fun with this adorable Cat Coloring Book for Kids! Packed with 30 large, cat-themed illustrations, this book is perfect for young artists who love cute, playful kitties.",
+    pages: "63 pages",
+    size: "6 × 9 in",
+    language: "English",
+    amazonUrl: "https://amzn.to/4cKZWhU",
+    coverImg: "images/Cats_Coloring_Front.png",
+    backImg: "images/Cats1.png",
+    sampleImg: "images/Cats2.png"
+  },
+   fk7: {
+    title: "Halloween Coloring Book for Kids",
+    category: "Coloring Book",
+    price: "$7.99",
+    desc: "Get ready for a spook-tacular adventure with this Halloween Coloring Book for Kids—the perfect way to celebrate the fun and magic of the Halloween season! Packed with 34 adorable and slightly spooky illustrations, this coloring book is designed to spark creativity and keep kids entertained for hours. From friendly ghosts and smiling pumpkins to witches, bats, and haunted houses, every page brings a new Halloween-themed scene to life.",
+    pages: "71 pages",
+    size: "6 × 9 in",
+    language: "English",
+    amazonUrl: "https://amzn.to/4vQjxWC",
+    coverImg: "images/Halloween_Coloring_Front.png",
+    backImg: "images/Halloween1.png",
+    sampleImg: "images/Halloween2.png"
+  },
+   fk8: {
+    title: "Dinosaur Word Search: Fun Prehistoric Word Games for Children",
+    category: "Word Search",
+    price: "$6.99",
+    desc: "Take a journey back to the land of the dinosaurs with this exciting Dinosaur Word Search Book for Kids! Packed with fun and educational puzzles, this activity book is designed to entertain while helping children build vocabulary, improve focus, and develop problem-solving skills. As a special bonus, kids will also enjoy 5 dinosaur-themed coloring pages for extra creativity and fun!",
+    pages: "65 pages",
+    size: "6 × 9 in",
+    language: "English",
+    amazonUrl: "https://amzn.to/4u9dVoV",
+    coverImg: "images/Dinosaur_Word_Search_Front.png",
+    backImg: "images/Dinosaur_Word1.png",
+    sampleImg: "images/Dinosaur_Word2.png"
+  },
+   fk9: {
+    title: "Space Word Search Puzzle Book for Kids: Fun Brain Games",
+    category: "Word Search",
+    price: "$6.99",
+    desc: "Take your child on an out-of-this-world adventure with this exciting Space Word Search Book for Kids! Packed with fun, space-themed puzzles, this book is perfect for curious minds who love astronauts, planets, stars, and galaxies. With 30 engaging word searches and full solutions, kids will have hours of brain-boosting entertainment while exploring the wonders of outer space.",
+    pages: "60 pages",
+    size: "6 × 9 in",
+    language: "English",
+    amazonUrl: "https://amzn.to/4vLSprW",
+    coverImg: "images/Space_Word_Search_Front.png",
+    backImg: "images/Space_Word1.png",
+    sampleImg: "images/Space_Word2.png"
+  },
+};
+
+function openModal(id) {
+  const b = books[id];
+  if (!b) return;
+
+  document.getElementById('modalTitle').textContent = b.title;
+  document.getElementById('modalCategory').textContent = b.category;
+  document.getElementById('modalPrice').textContent = b.price;
+  document.getElementById('modalDesc').textContent = b.desc;
+  document.getElementById('modalAmazonBtn').href = b.amazonUrl;
+
+  document.getElementById('modalCover').innerHTML = b.coverImg
+    ? `<img src="${b.coverImg}" alt="${b.title}" style="width:100%;height:100%;object-fit:cover;">`
+    : `<div class="modal-cover-placeholder"><span class="emoji">${b.coverEmoji}</span><span class="title">${b.title}</span></div>`;
+
+  document.getElementById('modalMeta').innerHTML = `
+    <div class="meta-item"><span class="meta-label">Pages</span><span class="meta-value">${b.pages}</span></div>
+    <div class="meta-item"><span class="meta-label">Size</span><span class="meta-value">${b.size}</span></div>
+    <div class="meta-item"><span class="meta-label">Language</span><span class="meta-value">${b.language}</span></div>
+    <div class="meta-item"><span class="meta-label">Format</span><span class="meta-value">Paperback</span></div>`;
+
+  document.getElementById('modalPreviews').innerHTML = `
+    <div class="preview-img">${b.sampleImg 
+        ? `<img src="${b.sampleImg}" alt="Sample page" style="width:100%;height:100%;object-fit:cover;">` 
+        : `<div class="preview-placeholder"><span>📄</span><span>${b.previewLabel1}</span></div>`}
+    </div>
+    <div class="preview-img">${b.backImg 
+        ? `<img src="${b.backImg}" alt="Back cover" style="width:100%;height:100%;object-fit:cover;">` 
+        : `<div class="preview-placeholder"><span>📄</span><span>${b.previewLabel2}</span></div>`}
+    </div>`;
+
+  document.getElementById('modalOverlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeModal() {
+  document.getElementById('modalOverlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function closeModalOutside(e) {
+  if (e.target === document.getElementById('modalOverlay')) closeModal();
+}
+
+document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal(); });
+</script>
+</body>
+</html>
